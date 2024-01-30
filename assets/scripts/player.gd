@@ -1,19 +1,26 @@
 extends Node2D
 
+var player_speed = 200
+var player_velocity = Vector2()
 
-var player_x_pos
-var player_speed = 100
-# Called when the node enters the scene tree for the first time.
 func _ready():
-	player_x_pos = get_position().x
-	pass # Replace with function body.
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	
-	get_transform()
-	set_position(Vector2(player_x_pos,55))
-
-	player_x_pos = player_x_pos + ( player_speed * delta )
-	
 	pass
+
+func _process(delta):
+	player_velocity = Vector2()
+
+	if Input.is_action_pressed("ui_right"):
+		player_velocity.x += 1
+	if Input.is_action_pressed("ui_left"):
+		player_velocity.x -= 1
+	if Input.is_action_pressed("ui_down"):
+		player_velocity.y += 1
+	if Input.is_action_pressed("ui_up"):
+		player_velocity.y -= 1
+
+	# Normalize diagonal movement
+	player_velocity = player_velocity.normalized()
+
+	# Update player position based on input and speed
+	var new_position = get_position() + player_velocity * player_speed * delta
+	set_position(new_position)
