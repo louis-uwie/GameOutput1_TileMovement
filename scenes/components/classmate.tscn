@@ -150,7 +150,7 @@ position = Vector2(0, -19)
 scale = Vector2(4.125, 4.08333)
 sprite_frames = SubResource("SpriteFrames_ribvk")
 animation = &"down"
-frame_progress = 0.618172
+frame_progress = 0.973826
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -19)
