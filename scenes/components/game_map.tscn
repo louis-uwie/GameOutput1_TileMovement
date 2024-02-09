@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://bu480bu0ibfhk"]
+[gd_scene load_steps=38 format=3 uid="uid://dt5osfj7odygt"]
 
 [ext_resource type="Texture2D" uid="uid://y1b8hhsaa1ku" path="res://assets/sprites/Sprout Lands - Sprites - Basic pack/Tilesets/Grass.png" id="1_scgkm"]
 [ext_resource type="Texture2D" uid="uid://bvmvadmlst76a" path="res://assets/sprites/Sprout Lands - Sprites - Basic pack/Tilesets/Hills.png" id="2_vvk1a"]
