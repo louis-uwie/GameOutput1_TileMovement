@@ -1,7 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://bp1k4nh1vyq6y"]
+[gd_scene load_steps=9 format=3 uid="uid://bp1k4nh1vyq6y"]
 
 [ext_resource type="Texture2D" uid="uid://bvmvadmlst76a" path="res://assets/sprites/Sprout Lands - Sprites - Basic pack/Tilesets/Hills.png" id="1_nreey"]
 [ext_resource type="Texture2D" uid="uid://n3fm2fvfv8ph" path="res://assets/sprites/Sprout Lands - Sprites - Basic pack/Tilesets/Fences.png" id="2_ei6xj"]
+[ext_resource type="PackedScene" uid="uid://bklmrj7i1rh0y" path="res://scenes/components/classmate.tscn" id="3_6wydf"]
+[ext_resource type="PackedScene" uid="uid://53kircyhs17o" path="res://scenes/components/player.tscn" id="4_vssjt"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_cqd3y"]
 texture = ExtResource("1_nreey")
@@ -107,3 +109,9 @@ format = 2
 [node name="Fences" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_o68kk")
 format = 2
+
+[node name="classmate" parent="." instance=ExtResource("3_6wydf")]
+position = Vector2(632, 200)
+
+[node name="Player" parent="." instance=ExtResource("4_vssjt")]
+position = Vector2(368, 176)
