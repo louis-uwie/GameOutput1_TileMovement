@@ -7,9 +7,15 @@
 [node name="World" type="Node2D"]
 
 [node name="classmate" parent="." instance=ExtResource("3_2ueh8")]
-position = Vector2(592, 184)
+position = Vector2(528, 200)
 
 [node name="Player" parent="." instance=ExtResource("1_2y7nl")]
-position = Vector2(0, 128)
+position = Vector2(96, 168)
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+limit_left = 0
+limit_top = 0
+limit_right = 925
+limit_bottom = 1425
 
 [node name="game_map" parent="." instance=ExtResource("3_qw1n8")]

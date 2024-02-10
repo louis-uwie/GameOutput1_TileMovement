@@ -14,11 +14,12 @@ config/name="GoDot_PlayGround"
 run/main_scene="res://scenes/components/world.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
+run/stretch/scale=4.0
 
 [display]
 
 window/stretch/mode="canvas_items"
-window/stretch/scale=4.0
+window/stretch/scale=1.5
 
 [rendering]
 
