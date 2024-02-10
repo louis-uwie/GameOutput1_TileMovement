@@ -10,3 +10,15 @@ script = ExtResource("1_l87rg")
 position = Vector2(16, 16)
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("1_g280j")
+
+[node name="Camera2D" type="Camera2D" parent="Sprite2D"]
+position = Vector2(-64, -64)
+scale = Vector2(4, 4)
+zoom = Vector2(0.5, 0.5)
+limit_left = -200
+limit_top = 0
+limit_right = 928
+limit_bottom = 1424
+limit_smoothed = true
+drag_horizontal_offset = 0.5
+drag_vertical_offset = 0.5

@@ -139,21 +139,20 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f1jri"]
-size = Vector2(48, 66)
+size = Vector2(32, 32)
 
 [node name="classmate" type="CharacterBody2D"]
 script = ExtResource("1_csrme")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
-position = Vector2(0, -19)
-scale = Vector2(4.125, 4.08333)
+position = Vector2(0, -6)
+scale = Vector2(2.66667, 2.63973)
 sprite_frames = SubResource("SpriteFrames_ribvk")
 animation = &"down"
 frame_progress = 0.973826
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -19)
 shape = SubResource("RectangleShape2D_f1jri")
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
