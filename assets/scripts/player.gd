@@ -8,6 +8,7 @@ var last_direction = ""
 var tp_here = Vector2(816,416)
 
 var is_moving = false
+var is_teleporting = false
 @onready var animation = $AnimatedSprite2D
 
 
@@ -17,7 +18,7 @@ func _ready():
 
 func _process(delta):
 
-	if is_moving:
+	if is_moving or is_teleporting:
 		# Normalize diagonal movement
 		player_velocity = player_velocity.normalized()
 		
@@ -74,13 +75,11 @@ func _process(delta):
 
 func _on_area_2d_body_entered(body):
 	print("entered")
+	is_teleporting = true
+	await get_tree().create_timer(3).timeout
+	is_teleporting = false
 	set_position(tp_here)
-	is_moving = false
+	
 	pass # Replace with function body.
 
 
-func _on_north_wall_body_entered(body):
-	print("entered")
-	player_velocity = Vector2()
-	is_moving = false
-	pass # Replace with function body.
