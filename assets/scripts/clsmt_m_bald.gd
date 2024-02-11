@@ -49,4 +49,3 @@ func _physics_process(delta):
 		direction = Vector2.LEFT
 	
 	_animate(direction)
-	
