@@ -253,7 +253,7 @@ texture = ExtResource("4_gxasj")
 [sub_resource type="TileSet" id="TileSet_f7lls"]
 sources/0 = SubResource("TileSetAtlasSource_tw27g")
 
-[node name="Map" type="Node2D"]
+[node name="MapObstacles" type="Node2D"]
 
 [node name="Fences" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_o68kk")
