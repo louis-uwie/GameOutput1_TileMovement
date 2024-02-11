@@ -2,13 +2,14 @@ extends Node2D
 
 var player_speed = 200
 var player_velocity = Vector2()
+
 var goal_position = Vector2()
 var last_direction = ""
-
-
+var tp_here = Vector2(816,416)
 
 var is_moving = false
 @onready var animation = $AnimatedSprite2D
+
 
 func _ready():
 	animation.play("idle")
@@ -24,8 +25,6 @@ func _process(delta):
 		var new_position = get_position() + player_velocity * player_speed * delta
 		set_position(new_position)
 
-		print(goal_position)
-		
 		var distance = sqrt((new_position.x - goal_position.x)**2 + (new_position.y - goal_position.y)**2)
 		
 		if distance <= 16:
@@ -70,5 +69,18 @@ func _process(delta):
 			elif last_direction == "up":
 				animation.play("idle_up")
 			elif last_direction == "down":
-				animation.play("idle_down")
-			
+				animation.play("idle_wdown")
+
+
+func _on_area_2d_body_entered(body):
+	print("entered")
+	set_position(tp_here)
+	is_moving = false
+	pass # Replace with function body.
+
+
+func _on_north_wall_body_entered(body):
+	print("entered")
+	player_velocity = Vector2()
+	is_moving = false
+	pass # Replace with function body.
