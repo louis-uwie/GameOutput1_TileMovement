@@ -1,15 +1,10 @@
 extends CharacterBody2D
 
 var tile_size = 32
-var inputs = {"ui_right": Vector2.RIGHT,
-			"ui_left": Vector2.LEFT,
-			"ui_up": Vector2.UP,
-			"ui_down": Vector2.DOWN}
 
 var last_direction = ""
 var is_teleporting = false
 var tp_here = Vector2(816,400)
-var is_moving = false
 var animate = false
 const animation_speed = 8
 
@@ -19,63 +14,45 @@ const animation_speed = 8
 func _ready():
 	animation.play("idle_down")
 	
-func _physics_process(delta):
-	if animate:
+func _process(event):
+	if animate or is_teleporting:
 		return
-	
-	if !is_moving and !is_teleporting:
-		if last_direction == "up":
-			animation.play("idle_up")
-		elif last_direction == "down":
-			animation.play("idle_down")
-		elif last_direction == "left":
-			animation.play("idle_left")
-		elif last_direction == "right":
-			animation.play("idle_right")
-			
-	for dir in inputs.keys():
-		if Input.is_action_pressed(dir) and !is_teleporting:
-			is_moving = true
-			move(dir)
-		else:
-			is_moving = false
+		
+	if Input.is_action_pressed("ui_up"):
+		move(Vector2.UP, "up")
+	elif Input.is_action_pressed("ui_down"):
+		move(Vector2.DOWN, "down")
+	elif Input.is_action_pressed("ui_right"):
+		move(Vector2.RIGHT, "right")
+	elif Input.is_action_pressed("ui_left"):
+		move(Vector2.LEFT, "left")
+	else:
+		animation.play("idle_"+last_direction)
 
-func move(dir):
-	if dir == "ui_up":
-		animation.play("up")
-		last_direction = "up"
-	elif dir == "ui_down":
-		animation.play("down")
-		last_direction = "down"
-	elif dir == "ui_left":
-		animation.play("left")
-		last_direction = "left"
-	elif dir == "ui_right":
-		animation.play("right")
-		last_direction = "right"
-	
-	ray.target_position = inputs[dir] * tile_size
+func move(dir, string_dir):	
+	ray.target_position = dir * tile_size
 	ray.force_raycast_update()
 	if !ray.is_colliding():
-		
+		animation.play(string_dir)
+		last_direction = string_dir
+			
 		var tween = create_tween()
 		tween.tween_property(self, "position",
-			position + inputs[dir] *    tile_size, 1.0/animation_speed).set_trans(Tween.TRANS_SINE)
+			position + dir *    tile_size, 1.0/animation_speed).set_trans(Tween.TRANS_SINE)
 		animate = true
 		await tween.finished
 		animate = false
+	else:
+		animation.play("idle_"+string_dir)
+	
+
 
 func _on_area_2d_body_entered(body):
 	print("entered")
 	is_teleporting = true
 	animation.play("tp")
 	await get_tree().create_timer(3).timeout
-	is_teleporting = false
 	animation.play("idle_up")
+	is_teleporting = false
 	set_position(tp_here)
-	pass # Replace with function body.
-
-func _on_area_2d_2_body_entered(body):
-	print("slipped")
-	move(Vector2.DOWN)
 	pass # Replace with function body.

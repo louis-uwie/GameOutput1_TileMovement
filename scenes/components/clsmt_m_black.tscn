@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://duijjhq0f1ylx"]
+[gd_scene load_steps=19 format=3 uid="uid://bklmrj7i1rh0y"]
 
 [ext_resource type="Script" path="res://assets/scripts/clsmt_m_black.gd" id="1_csrme"]
 [ext_resource type="Texture2D" uid="uid://0cpjjqrnwjux" path="res://assets/sprites/Classmates/149.png" id="1_q23yk"]

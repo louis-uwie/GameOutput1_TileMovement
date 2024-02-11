@@ -1,7 +1,7 @@
 [gd_scene load_steps=16 format=3 uid="uid://bi8r6v11di14k"]
 
 [ext_resource type="PackedScene" uid="uid://53kircyhs17o" path="res://scenes/components/player.tscn" id="1_2y7nl"]
-[ext_resource type="PackedScene" uid="uid://duijjhq0f1ylx" path="res://scenes/components/clsmt_m_black.tscn" id="3_2ueh8"]
+[ext_resource type="PackedScene" uid="uid://bklmrj7i1rh0y" path="res://scenes/components/clsmt_m_black.tscn" id="3_2ueh8"]
 [ext_resource type="PackedScene" uid="uid://bu480bu0ibfhk" path="res://scenes/components/game_map.tscn" id="3_qw1n8"]
 [ext_resource type="Texture2D" uid="uid://cphq5rk0lxv85" path="res://assets/sprites/School Sprites/Inside_C.png" id="4_dfb52"]
 [ext_resource type="PackedScene" uid="uid://3lggs2xdvbwj" path="res://scenes/components/clsmt_m_cyan.tscn" id="4_k6jw5"]
@@ -2699,7 +2699,7 @@ size = Vector2(52, 35)
 position = Vector2(528, 176)
 
 [node name="Player" parent="." instance=ExtResource("1_2y7nl")]
-position = Vector2(112, 176)
+position = Vector2(816, 736)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 limit_left = 0
