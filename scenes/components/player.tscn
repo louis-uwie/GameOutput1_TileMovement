@@ -285,7 +285,6 @@ animation = &"tp"
 frame_progress = 0.491346
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 shape = SubResource("RectangleShape2D_5ui8w")
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
