@@ -9,7 +9,6 @@ var animating = false
 var idle_face = ["idle_up", "idle_down"]
 
 func _ready():
-	position = position.snapped(Vector2.RIGHT * tile_size)
 	animations.play("right")
 
 func _animate(dir):
@@ -35,14 +34,14 @@ func _animate(dir):
 			animations.play("idle_right")
 	
 func _physics_process(delta):
-	if position.x < 240 and !animating:
+	if position.x <= 240 and !animating:
 		animations.play(idle_face[randi_range (0, 1)])
 		animating = true
 		await get_tree().create_timer(3).timeout
 		animating = false
 		direction = Vector2.RIGHT
 		
-	elif position.x > 336 and !animating:
+	elif position.x >= 336 and !animating:
 		animations.play(idle_face[randi_range (0, 1)])
 		animating = true
 		await get_tree().create_timer(3).timeout

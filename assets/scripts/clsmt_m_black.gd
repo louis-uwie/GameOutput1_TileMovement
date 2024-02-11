@@ -8,7 +8,6 @@ var direction = Vector2.DOWN
 var animating = false
 
 func _ready():
-	position = position.snapped(Vector2.DOWN * tile_size)
 	animations.play("down")
 
 func _animate(dir):
