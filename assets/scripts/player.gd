@@ -1,76 +1,70 @@
-extends Node2D
+extends CharacterBody2D
 
-var player_speed = 200
-var player_velocity = Vector2()
+var tile_size = 32
+var inputs = {"ui_right": Vector2.RIGHT,
+			"ui_left": Vector2.LEFT,
+			"ui_up": Vector2.UP,
+			"ui_down": Vector2.DOWN}
 
-var goal_position = Vector2()
 var last_direction = ""
-var tp_here = Vector2(816,416)
-
-var is_moving = false
 var is_teleporting = false
-@onready var animation = $AnimatedSprite2D
+var tp_here = Vector2(816,400)
+var is_moving = false
+var animate = false
+const animation_speed = 8
 
+@onready var animation = $AnimatedSprite2D
+@onready var ray = $RayCast2D
 
 func _ready():
-	animation.play("idle")
-	player_velocity = Vector2()
-
-func _process(delta):
-
-	if is_moving or is_teleporting:
-		# Normalize diagonal movement
-		player_velocity = player_velocity.normalized()
-		
-		# Update player position based on input and speed
-		var new_position = get_position() + player_velocity * player_speed * delta
-		set_position(new_position)
-
-		var distance = sqrt((new_position.x - goal_position.x)**2 + (new_position.y - goal_position.y)**2)
-		
-		if distance <= 16:
-			player_velocity = Vector2()
-			set_position(goal_position)
+	print(inputs)
+	animation.play("idle_down")
+	
+func _physics_process(delta):
+	if animate:
+		return
+	
+	if !is_moving:
+		if last_direction == "up":
+			animation.play("idle_up")
+		elif last_direction == "down":
+			animation.play("idle_down")
+		elif last_direction == "left":
+			animation.play("idle_left")
+		elif last_direction == "right":
+			animation.play("idle_right")
+			
+	for dir in inputs.keys():
+		if Input.is_action_pressed(dir):
+			is_moving = true
+			move(dir)
+		else:
 			is_moving = false
 
-	else:
-		if Input.is_action_pressed("ui_right"):
-			animation.play("right")
-			player_velocity.x += 1
-			goal_position = get_position() + player_velocity * 32
-			is_moving = true
-			last_direction = "right"
-
-		elif Input.is_action_pressed("ui_left"):
-			animation.play("left")
-			player_velocity.x -= 1
-			goal_position = get_position() + player_velocity * 32
-			is_moving = true
-			last_direction = "left"
-
-		elif Input.is_action_pressed("ui_down"):
-			animation.play("down")
-			player_velocity.y += 1
-			goal_position = get_position() + player_velocity * 32
-			is_moving = true
-			last_direction = "down"
-			
-		elif Input.is_action_pressed("ui_up"):
-			animation.play("up")
-			player_velocity.y -= 1
-			goal_position = get_position() + player_velocity * 32
-			is_moving = true
-			last_direction = "up"
-			
-		else:
-			if last_direction == "right":
-				animation.play("idle_right")
-			elif last_direction == "left":
-				animation.play("idle_left")
-			elif last_direction == "up":
-				animation.play("idle_up")
-			elif last_direction == "down":
-				animation.play("idle_wdown")
+func move(dir):
+	if dir == "ui_up":
+		animation.play("up")
+		last_direction = "up"
+	elif dir == "ui_down":
+		animation.play("down")
+		last_direction = "down"
+	elif dir == "ui_left":
+		animation.play("left")
+		last_direction = "left"
+	elif dir == "ui_right":
+		animation.play("right")
+		last_direction = "right"
+	
+	ray.target_position = inputs[dir] * tile_size
+	ray.force_raycast_update()
+	if !ray.is_colliding():
+		
+		var tween = create_tween()
+		tween.tween_property(self, "position",
+			position + inputs[dir] *    tile_size, 1.0/animation_speed).set_trans(Tween.TRANS_SINE)
+		animate = true
+		await tween.finished
+		animate = false
 
 
 func _on_area_2d_body_entered(body):
@@ -79,7 +73,4 @@ func _on_area_2d_body_entered(body):
 	await get_tree().create_timer(3).timeout
 	is_teleporting = false
 	set_position(tp_here)
-	
 	pass # Replace with function body.
-
-
