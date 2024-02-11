@@ -17,14 +17,13 @@ const animation_speed = 8
 @onready var ray = $RayCast2D
 
 func _ready():
-	print(inputs)
 	animation.play("idle_down")
 	
 func _physics_process(delta):
 	if animate:
 		return
 	
-	if !is_moving:
+	if !is_moving and !is_teleporting:
 		if last_direction == "up":
 			animation.play("idle_up")
 		elif last_direction == "down":
@@ -35,7 +34,7 @@ func _physics_process(delta):
 			animation.play("idle_right")
 			
 	for dir in inputs.keys():
-		if Input.is_action_pressed(dir):
+		if Input.is_action_pressed(dir) and !is_teleporting:
 			is_moving = true
 			move(dir)
 		else:
@@ -66,11 +65,17 @@ func move(dir):
 		await tween.finished
 		animate = false
 
-
 func _on_area_2d_body_entered(body):
 	print("entered")
 	is_teleporting = true
+	animation.play("tp")
 	await get_tree().create_timer(3).timeout
 	is_teleporting = false
+	animation.play("idle_up")
 	set_position(tp_here)
+	pass # Replace with function body.
+
+func _on_area_2d_2_body_entered(body):
+	print("slipped")
+	move(Vector2.DOWN)
 	pass # Replace with function body.
