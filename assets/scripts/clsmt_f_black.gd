@@ -10,7 +10,6 @@ var min_bounds = _generate_rand_mult32(1, 7)
 var max_bounds = _generate_rand_mult32(9, 15)
 
 func _ready():
-	position = position.snapped(Vector2.RIGHT * tile_size)
 	animations.play("right")
 
 func _animate(dir):
