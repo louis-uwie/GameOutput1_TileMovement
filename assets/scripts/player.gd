@@ -55,8 +55,6 @@ func _physics_process(event):
 		move(Vector2.LEFT, "left")
 	else:
 		animation.play("idle_"+last_direction)
-		
-	
 
 func move(dir, string_dir):	
 	ray.target_position = dir * tile_size
@@ -87,7 +85,6 @@ func _on_area_2d_body_entered(body):
 func _on_area_2d_2_body_entered(body):
 	is_pushing = true
 
-
 func _on_area_2d_3_body_entered(body):
 	print("entered")
 	is_slipping = true
@@ -95,5 +92,3 @@ func _on_area_2d_3_body_entered(body):
 func _on_area_2d_3_body_exited(body):
 	is_slipping = false
 	print("exited")
-
-
