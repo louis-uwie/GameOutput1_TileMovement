@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=3 uid="uid://bi8r6v11di14k"]
 
 [ext_resource type="PackedScene" uid="uid://53kircyhs17o" path="res://scenes/components/player.tscn" id="1_2y7nl"]
-[ext_resource type="PackedScene" uid="uid://duijjhq0f1ylx" path="res://scenes/components/clsmt_m_black.tscn" id="3_2ueh8"]
+[ext_resource type="PackedScene" uid="uid://bklmrj7i1rh0y" path="res://scenes/components/clsmt_m_black.tscn" id="3_2ueh8"]
 [ext_resource type="PackedScene" uid="uid://bu480bu0ibfhk" path="res://scenes/components/game_map.tscn" id="3_qw1n8"]
 [ext_resource type="PackedScene" uid="uid://3lggs2xdvbwj" path="res://scenes/components/clsmt_m_cyan.tscn" id="4_k6jw5"]
 [ext_resource type="PackedScene" uid="uid://cketwp04i01sf" path="res://scenes/components/clsmt_f_black.tscn" id="5_3l477"]
@@ -58,7 +58,7 @@ position = Vector2(16, 771)
 shape = SubResource("RectangleShape2D_ywjig")
 
 [node name="clsmt_m_cyan" parent="." instance=ExtResource("4_k6jw5")]
-position = Vector2(64, 656)
+position = Vector2(16, 656)
 
 [node name="clsmt_f_black" parent="." instance=ExtResource("5_3l477")]
 position = Vector2(144, 400)

@@ -33,10 +33,10 @@ func _animate(dir):
 			animations.play("idle_right")
 	
 func _physics_process(delta):
-	if position.x < 16:
+	if position.x <= 16:
 		direction = Vector2.RIGHT
 		
-	elif position.x > 176:
+	elif position.x >= 176:
 		direction = Vector2.LEFT
 	
 	_animate(direction)
